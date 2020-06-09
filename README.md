@@ -1,24 +1,9 @@
-# README
+A basic Ruby on Rails 6.0.3.1 app for testing https://github.com/rails/rails/issues/39580
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To test create a .env file and set the following in it (obviously replacing the values with real DB credentials):
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+SECONDARY_BASE_URL=https://www.example.co
+SECONDARY_DB_HOST=example.co
+SECONDARY_DB_NAME=dbname
+SECONDARY_USERNAME=username
+SECONDARY_PASSWORD=password
