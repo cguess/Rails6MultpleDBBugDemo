@@ -1,0 +1,45 @@
+# SQLite. Versions 3.8.0 and up are supported.
+#   gem install sqlite3
+#
+#   Ensure the SQLite 3 gem is defined in your Gemfile
+#   gem 'sqlite3'
+#
+default: &default
+  adapter: sqlite3
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+
+# Rails 6 introduces multiple database support natively
+secondary: &secondary
+  host: <%= ENV.fetch("SECONDARY_DB_HOST") %>
+  database: <%= ENV.fetch("SECONDARY_DB_NAME") %>
+  username: <%= ENV.fetch("SECONDARY_USERNAME") %>
+  password: <%= ENV.fetch("SECONDARY_PASSWORD") %>
+  encoding: utf8
+  adapter: postgresql
+
+
+development:
+  primary:
+    <<: *default
+    database: db/development.sqlite3
+  secondary:
+    <<: *secondary
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  primary:
+    <<: *default
+    database: db/test.sqlite3
+  secondary:
+    <<: *secondary
+
+production:
+  primary:
+    <<: *default
+    database: db/production.sqlite3
+  secondary:
+    <<: *secondary
+
